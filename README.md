@@ -1,8 +1,11 @@
 # react-native-sf-image-zoom-viewer
 
+
 # 图片查看器，支持手势缩放、分享
 
+
 ![show](./show.gif)
+
 
 # 安装
 * npm install react-native-sf-image-zoom-viewer
@@ -10,12 +13,21 @@
 * npm install react-native-md5
 * react-native link react-native-video
 
+
 # Props
 |  parameter  |  type  |  required  |   description  |  default  |
 |:-----|:-----|:-----|:-----|:-----|
 |isShowAni|boolean|no|是否显示展示动画|true|
 |isShowShare|boolean|no|是否显示分享按钮|true|
 |onShare|function<br>()=>(index)=>{}|no|点击分享事件|()=>null|
+
+
+# Methods
+|  Methods  |  Params  |  Param Types  |   description  |  Example  |
+|:-----|:-----|:-----|:-----|:-----|
+|init|dataSource|array|初始化数据|this.obj.init(dataSource)</br>参数参考例子里的ds数组|
+|show|index|number|显示图片查看器|this.obj.show(0)|
+
 
 # 例子
 ```
@@ -136,15 +148,15 @@ export default class App extends Component<Props> {
     componentDidMount() {
         var ds = [];
         for (var i = 0; i < this.dataSource.length; i++) {
-            var handel = findNodeHandle(this.refs['img_' + i]);
-            var subData = this.dataSource[i];
+            var handel = findNodeHandle(this.refs['img_' + i]);//图片的句柄
+            var subData = this.dataSource[i];
             var data = {
-                big_path: subData.path,
-                small_path: subData.path,
-                type: subData.type,
-                ctrHandel: handel,
-                video_path: subData.video_path
-            }
+                big_path: subData.path,//图片大图地址
+                small_path: subData.path,//图片缩略图地址
+                type: subData.type,//图片类型，参考SFZoomViewConfig
+                ctrHandel: handel,//图片控件句柄
+                video_path: subData.video_path//如果是视频需要填入视频地址
+            }
             ds.push(data);
         }
         this.zoom.init(ds);
