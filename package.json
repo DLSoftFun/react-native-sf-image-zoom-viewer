@@ -1,0 +1,25 @@
+{
+  "name": "react-native-sf-image-zoom-viewer",
+  "version": "1.0.0",
+  "description": "图片查看器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shuifeng/react-native-sf-image-zoom-viewer.git"
+  },
+  "keywords": [
+    "zoom",
+    "image",
+    "view",
+    "image-zoom"
+  ],
+  "author": "suifeng586",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shuifeng/react-native-sf-image-zoom-viewer/issues"
+  },
+  "homepage": "https://github.com/shuifeng/react-native-sf-image-zoom-viewer#readme"
+}
