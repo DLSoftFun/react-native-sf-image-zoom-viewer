@@ -5,10 +5,10 @@
 ![show](./show.gif)
 
 # 安装
-> npm install react-native-sf-image-zoom-viewer
-> npm install react-native-video
-> npm install react-native-md5
-> react-native link react-native-video
+* npm install react-native-sf-image-zoom-viewer
+* npm install react-native-video
+* npm install react-native-md5
+* react-native link react-native-video
 
 # Props
 |  parameter  |  type  |  required  |   description  |  default  |
