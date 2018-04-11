@@ -9,6 +9,14 @@
 > npm install react-native-video
 > npm install react-native-md5
 > react-native link react-native-video
+
+# Props
+|  parameter  |  type  |  required  |   description  |  default  |
+|:-----|:-----|:-----|:-----|:-----|
+|isShowAni|boolean|no|是否显示展示动画|true|
+|isShowShare|boolean|no|是否显示分享按钮|true|
+|onShare|function<br>()=>(index)=>{}|no|点击分享事件|()=>null|
+
 # 例子
 ```
 import React, {Component} from 'react';
@@ -144,10 +152,3 @@ export default class App extends Component<Props> {
 }
 
 ```
-
-# Props
-|  parameter  |  type  |  required  |   description  |  default  |
-|:-----|:-----|:-----|:-----|:-----|
-|isShowAni|boolean|no|是否显示展示动画|true|
-|isShowShare|boolean|no|是否显示分享按钮|true|
-|onShare|function<br>()=>(index)=>{}|no|点击分享事件|()=>null|
