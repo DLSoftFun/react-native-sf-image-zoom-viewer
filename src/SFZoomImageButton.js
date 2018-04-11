@@ -27,6 +27,7 @@ export default class SFZoomImageButton extends Component {
     componentDidMount(){
 
     }
+
     clickVideo = () => {
         this.refVideo.show(this.props.imgData.video_path);
     }

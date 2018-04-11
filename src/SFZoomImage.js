@@ -12,11 +12,11 @@ import {
     PanResponder,
     Animated,
     Easing,
-    ActivityIndicator
-
+    ActivityIndicator,
+    NativeModules
 } from "react-native";
-import { UIManager} from 'NativeModules';
-import resolveAssetSource from 'resolveAssetSource';
+const UIManager = NativeModules.UIManager;
+const resolveAssetSource = Image.resolveAssetSource;
 import SFZoomViewConfig from './SFZoomViewConfig'
 import SFZoomShowAnimated from './SFZoomShowAnimated'
 import SFZoomImageCache from './SFZoomImageCache'
@@ -187,14 +187,23 @@ export default class SFZoomImage extends Component {
         }
         this.isImgLoaded = false;
         this.isShowAniFinish = false;
-        UIManager.measure(this.props.imgData.ctrHandel, (x, y, width, height, pageX, pageY) => {
-
+            UIManager.measure(this.props.imgData.ctrHandel, (x, y, width, height, pageX, pageY) => {
             this.refZoomAni.init(this.props.imgData.small_path,pageX,pageY,width,height,true);
             if (this.width != 0 && this.height != 0){
-                this.refZoomAni.show(0,(this.props.cropHeight-this.height)/2,this.width,this.height);
+                if (this.props.imgData.type == SFZoomViewConfig.ZOOM_TYPE_LONG_IMG){
+                    this.refZoomAni.show((this.props.cropWidth-this.width)/2,0,this.width,this.height);
+                }else{
+                    this.refZoomAni.show(0,(this.props.cropHeight-this.height)/2,this.width,this.height);
+                }
+
             }else{
-                var toHeight = this.props.cropWidth*height/width;
-                this.refZoomAni.show(0,(this.props.cropHeight-toHeight)/2,this.props.cropWidth,toHeight);
+                if (this.props.imgData.type == SFZoomViewConfig.ZOOM_TYPE_LONG_IMG){
+                    var toWidth = this.props.cropHeight*width/height;
+                    this.refZoomAni.show((this.props.cropWidth-toWidth)/2,0,toWidth,this.props.cropHeight);
+                }else{
+                    var toHeight = this.props.cropWidth*height/width;
+                    this.refZoomAni.show(0,(this.props.cropHeight-toHeight)/2,this.props.cropWidth,toHeight);
+                }
             }
 
         })

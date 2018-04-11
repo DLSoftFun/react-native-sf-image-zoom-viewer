@@ -30,7 +30,6 @@ export default class SFZoomShowAnimated extends Component {
         })
     }
     init = (imgPath,x,y,w,h,isFadeIn) =>{
-        console.log(x,y,w,h,isFadeIn)
         this.imgPath = imgPath;
         this.aniPrePosX = new Animated.Value(x);
         this.aniPrePosY = new Animated.Value(y);

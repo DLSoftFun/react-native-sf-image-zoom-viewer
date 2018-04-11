@@ -35,7 +35,8 @@ export default class SFZoomView extends Component {
             curIndex:0,
             maxIndex:0,
             dataSource:[],
-            firstIndex:0
+            firstIndex:0,
+            isShow:false
         })
     }
     /**
@@ -64,12 +65,17 @@ export default class SFZoomView extends Component {
                              {big_path:'http://...',small_path:'',type:1,video_path:''}]
      * @param showIndex 当前显示的索引
      * */
-    show = (data,showIndex) => {
+    init = (data) => {
+        this.setState({
+            maxIndex:data.length,
+            dataSource:data,
+        })
+    }
+    show = (showIndex) => {
         this.setState({
             curIndex:showIndex,
-            maxIndex:data.length,
             firstIndex:showIndex,
-            dataSource:data,
+            isShow:true,
         },()=>{
             var zoomImage = this.refs['zoom_img_'+this.state.curIndex];
             zoomImage.showZoomFadeIn();
@@ -87,6 +93,7 @@ export default class SFZoomView extends Component {
         if (isFadeIn){
             this.aniOpacity.setValue(1)
         }else{
+
             this.aniOpacity.setValue(0)
         }
     }
@@ -146,7 +153,7 @@ export default class SFZoomView extends Component {
     }
     onHide = () => {
         this.setState({
-            dataSource:[]
+            isShow:false
         })
     }
     onShare = (index) => {
@@ -201,7 +208,7 @@ export default class SFZoomView extends Component {
                         onAniZoomEnd={this.onAniZoomEnd}
                     />
 
-                    <SFZoomImageButton cropWidth={dw} cropHeight={dh} imgData={this.state.dataSource[i]}/>
+                    <SFZoomImageButton ref={(ref)=>{this.zoomButton = ref}} cropWidth={dw} cropHeight={dh} imgData={this.state.dataSource[i]}/>
                 </View>
             )
         }
@@ -209,7 +216,7 @@ export default class SFZoomView extends Component {
     }
 
     render() {
-        if (this.state.dataSource.length > 0){
+        if (this.state.dataSource.length > 0 && this.state.isShow){
             return (
                 <Animated.View style={{
                     flex:1,
@@ -254,8 +261,6 @@ export default class SFZoomView extends Component {
     config = () => {
             SFZoomViewConfig.is_show_share = this.props.isShowShare;
             SFZoomViewConfig.is_show_ani = this.props.isShowAni;
-
-        console.log(SFZoomViewConfig.is_show_ani)
     }
     componentWillMount() {
         this.posX = 0;

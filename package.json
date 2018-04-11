@@ -1,6 +1,6 @@
 {
   "name": "react-native-sf-image-zoom-viewer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "图片查看器",
   "main": "index.js",
   "scripts": {

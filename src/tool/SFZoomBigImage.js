@@ -8,8 +8,7 @@ import {
     ScrollView,
     Modal,
 } from "react-native";
-import SFZoomImageCache from '../SFZoomImageCache'
-import resolveAssetSource from 'resolveAssetSource';
+const resolveAssetSource = Image.resolveAssetSource;
 
 var dw = Dimensions.get('window').width;
 var dh = Dimensions.get('window').height;
